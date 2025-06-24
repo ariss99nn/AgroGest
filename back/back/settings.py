@@ -11,9 +11,41 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 """
 
 from pathlib import Path
+from datetime import timedelta
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
+
+SIMPLE_JWT = {
+        'ACCESS_TOKEN_LIFETIME': timedelta(days=1),  # Por ejemplo, un día
+        'REFRESH_TOKEN_LIFETIME': timedelta(days=30), # Por ejemplo, 30 días
+        'ROTATE_REFRESH_TOKENS': True, # Opcional: genera un nuevo refresh token en cada refresh
+    'BLACKLIST_AFTER_ROTATION': True, # Opcional: Invalida el refresh token viejo después de la rotación
+    'UPDATE_LAST_LOGIN': False, # Opcional: Actualiza last_login en el modelo User
+
+    'ALGORITHM': 'HS256',
+    'SIGNING_KEY': 'nnRAADra', # ¡Cambia esto por una clave secreta fuerte y única!
+    'VERIFYING_KEY': None,
+    'AUDIENCE': None,
+    'ISSUER': None,
+    'JWK_URL': None,
+    'LEEWAY': 0,
+
+    'AUTH_HEADER_TYPES': ('Bearer',),
+    'AUTH_HEADER_NAME': 'HTTP_AUTHORIZATION',
+    'USER_ID_FIELD': 'id',
+    'USER_ID_CLAIM': 'user_id',
+    'USER_AUTHENTICATION_RULE': 'rest_framework_simplejwt.authentication.default_user_authentication_rule',
+
+    'AUTH_TOKEN_CLASSES': ('rest_framework_simplejwt.tokens.AccessToken',),
+    'TOKEN_TYPE_CLAIM': 'token_type',
+    'TOKEN_USER_CLASS': 'rest_framework_simplejwt.models.TokenUser',
+
+    'JTI_CLAIM': 'jti',
+
+    'SLIDING_TOKEN_LIFETIME': timedelta(minutes=5),
+    'SLIDING_TOKEN_REFRESH_LIFETIME': timedelta(days=1),
+    }
 
 
 # Quick-start development settings - unsuitable for production
@@ -27,8 +59,9 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
-
+AUTH_USER_MODEL = 'Usuario.User'
 # Application definition
+
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -37,11 +70,38 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'Cosecha',
+    'Economia',
+    'Estadistica',
+    'Inventario',
+    'Inversion',
+    'Monitoreo',
+    'Prediccion',
+    'Productos',
+    'Siembra',
+    'Suelo',
+    'Usuario',
+    'Ventas',
+    # 'rest_framework.authtoken',
+    
+    'django_celery_beat',
+    'rest_framework',
+    'rest_framework_simplejwt',
+    # 'corsheaders',
 ]
+# CELERY_BROKER_URL = 'redis://localhost:6379/0'
+# CELERY_ACCEPT_CONTENT = ['json']
+# CELERY_TASK_SERIALIZER = 'json'
 
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    ),
+}
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -74,8 +134,12 @@ WSGI_APPLICATION = 'back.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'agrogest',
+        'USER': 'postgres',
+        'PASSWORD': 'uno',
+        'HOST' : 'localhost',
+        'PORT' : '5432',
     }
 }
 
