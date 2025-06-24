@@ -1,0 +1,86 @@
+py manage.py startapp Cosecha
+py manage.py startapp Economia
+py manage.py startapp Estadistica
+py manage.py startapp Inventario
+py manage.py startapp Inversion
+py manage.py startapp Monitoreo
+py manage.py startapp Prediccion
+py manage.py startapp Productos
+py manage.py startapp Siembra
+py manage.py startapp Suelo
+py manage.py startapp Usuario
+py manage.py startapp Ventas
+
+py manage.py makemigrations Cosecha
+py manage.py makemigrations Economia
+py manage.py makemigrations Estadistica
+py manage.py makemigrations Inventario
+py manage.py makemigrations Inversion
+py manage.py makemigrations Monitoreo
+py manage.py makemigrations Prediccion
+py manage.py makemigrations Productos
+py manage.py makemigrations Siembra
+py manage.py makemigrations Suelo
+py manage.py makemigrations Usuario
+py manage.py makemigrations Ventas
+
+py manage.py makemigrations Cosecha
+py manage.py makemigrations Economia
+py manage.py makemigrations Estadistica
+py manage.py makemigrations Inventario
+py manage.py makemigrations Inversion
+py manage.py makemigrations Monitoreo
+py manage.py makemigrations Prediccion
+py manage.py makemigrations Productos
+py manage.py makemigrations Siembra
+py manage.py makemigrations Suelo
+py manage.py makemigrations Usuario
+py manage.py makemigrations Ventas
+
+
+
+
+
+from Usuario.models import User
+
+admin_user = User.objects.create_user(
+    username='administrador',
+    password='admin123',
+    email='admn@example.com',
+    first_name='Admin',
+    last_name='User',
+    document='126456789',
+    phone='556-1234',
+    city='Ciudad',
+    role='ADMIN'
+)
+
+admin_user.is_staff = True
+admin_user.is_superuser = True
+admin_user.save()
+
+print("Usuario admin creado:", admin_user.username)
+
+from Usuario.models import User
+user = User.objects.create_user(username='andres', password='admin123', role='ADMIN')
+user.is_staff = True
+user.is_superuser = True
+user.save()
+exit()
+
+
+    import jwt
+    from datetime import datetime, timedelta
+
+    def generar_token(usuario, secreto, tiempo_vencimiento):
+        payload = {
+            'exp': datetime.utcnow() + tiempo_vencimiento,
+            'sub': usuario.id,
+            'username': usuario.username
+        }
+        token = jwt.encode(payload, secreto, algorithm='HS256')
+        return token
+
+    # Ejemplo de uso:
+    # tiempo_vencimiento = timedelta(hours=24) # 24 horas
+    # token = generar_token(usuario, 'tu_secreto', tiempo_vencimiento)
