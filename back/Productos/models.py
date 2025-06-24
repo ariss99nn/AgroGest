@@ -13,3 +13,4 @@ class Product(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)  # Fecha de creación
     usd_price = models.DecimalField(max_digits=10, decimal_places=2, null=True, blank=True)
     market_price = models.DecimalField(max_digits=10, decimal_places=2)
+

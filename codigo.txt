@@ -11,6 +11,20 @@ py manage.py startapp Suelo
 py manage.py startapp Usuario
 py manage.py startapp Ventas
 
+py manage.py migrate Cosecha
+py manage.py migrate Economia
+py manage.py migrate Estadistica
+py manage.py migrate Inventario
+py manage.py migrate Inversion
+py manage.py migrate Monitoreo
+py manage.py migrate Prediccion
+py manage.py migrate Productos
+py manage.py migrate Siembra
+py manage.py migrate Suelo
+py manage.py migrate Usuario
+py manage.py migrate Ventas
+
+
 py manage.py makemigrations Cosecha
 py manage.py makemigrations Economia
 py manage.py makemigrations Estadistica
@@ -24,27 +38,25 @@ py manage.py makemigrations Suelo
 py manage.py makemigrations Usuario
 py manage.py makemigrations Ventas
 
-py manage.py makemigrations Cosecha
-py manage.py makemigrations Economia
-py manage.py makemigrations Estadistica
-py manage.py makemigrations Inventario
-py manage.py makemigrations Inversion
-py manage.py makemigrations Monitoreo
-py manage.py makemigrations Prediccion
-py manage.py makemigrations Productos
-py manage.py makemigrations Siembra
-py manage.py makemigrations Suelo
-py manage.py makemigrations Usuario
-py manage.py makemigrations Ventas
-
-
+py manage.py migrate Cosecha zero
+py manage.py migrate Economia zero
+py manage.py migrate Estadistica zero
+py manage.py migrate Inventario zero
+py manage.py migrate Inversion zero
+py manage.py migrate Monitoreo zero
+py manage.py migrate Prediccion zero
+py manage.py migrate Productos zero
+py manage.py migrate Siembra zero
+py manage.py migrate Suelo zero
+py manage.py migrate Usuario zero
+py manage.py migrate Ventas zero
 
 
 
 from Usuario.models import User
 
 admin_user = User.objects.create_user(
-    username='administrador',
+    username='nilo',
     password='admin123',
     email='admn@example.com',
     first_name='Admin',

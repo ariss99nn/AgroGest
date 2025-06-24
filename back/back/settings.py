@@ -87,7 +87,7 @@ INSTALLED_APPS = [
     'django_celery_beat',
     'rest_framework',
     'rest_framework_simplejwt',
-    # 'corsheaders',
+    'corsheaders',
 ]
 # CELERY_BROKER_URL = 'redis://localhost:6379/0'
 # CELERY_ACCEPT_CONTENT = ['json']
