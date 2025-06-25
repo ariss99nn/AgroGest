@@ -1,5 +1,5 @@
 import axios from 'axios';
-import router from '../Router/index.js'; // Asumiendo que tienes un router en src/router/index.js
+import router from '../router/router.js'; // Asumiendo que tienes un router en src/router/index.js
 import { useAuthStore } from '../stores/auth.js';
 
 const api = axios.create({

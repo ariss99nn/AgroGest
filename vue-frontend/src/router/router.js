@@ -1,18 +1,15 @@
-// src/router/index.js
 import { createRouter, createWebHistory } from 'vue-router';
 import { useAuthStore } from '../stores/auth.js'; // Pinia
-// import store from '@/store'; // Vuex
-
 import HomeView from '../views/HomeView.vue';
-import LoginView from '../views/Login.vue';
-import AboutView from '../views/About.vue';
-import UsersView from '../views/UsersView.vue'; // Una vista para listar usuarios (protegida por ADMIN)
-//import UserProfileView from '@/views/UserProfileView.vue'; // Una vista para el perfil del usuario (protegida)
+import LoginView from '../modules/user/views/LoginView.vue';
+import AboutView from '../views/AboutView.vue';
+import UsersView from '../modules/user/views/UsersView.vue';
+import ProfileView from '../modules/user/views/ProfileView.vue';
 
 const routes = [
     {
         path: '/',
-        name: 'home',
+        name: 'Home',
         component: HomeView,
     },
     {
@@ -32,12 +29,12 @@ const routes = [
     //     // meta: { requiresAuth: true, requiresAdmin: true }, // Rutas protegidas que requieren ser ADMIN
     },
 
-    // {
-    //     path: '/profile',
-    //     name: 'Profile',
-    //     component: UserProfileView,
-    //     meta: { requiresAuth: true }, // Ruta protegida
-    // },
+    {
+        path: '/profile',
+        name: 'Profile',
+        component: ProfileView,
+        // meta: { requiresAuth: true }, // Ruta protegida
+    },
     // ... otras rutas
 ];
 
